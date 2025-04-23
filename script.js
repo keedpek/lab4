@@ -1,6 +1,7 @@
 const baseURl = 'https://api.unsplash.com'
 const getRandomPhotoURL = '/photos/random'
 const searchPhotoURL = '/search/photos'
+const apiKey = import.meta.env.VITE_API_KEY
 
 const searchBtn = document.querySelector('#search-btn')
 const randomBtn = document.querySelector('#random-btn')
@@ -10,7 +11,7 @@ const imgContainer = document.querySelector('.content-container')
 searchBtn.addEventListener('click', async () => {
   searchBtn.disabled = true
   randomBtn.disabled = true
-  searchBtn.innerText = "Поиск ..."
+  searchBtn.innerText = "Загрузка ..."
   imgContainer.innerHTML = ""
   await searchPhotos()
   searchBtn.disabled = false
@@ -19,9 +20,10 @@ searchBtn.addEventListener('click', async () => {
 })
 
 randomBtn.addEventListener('click', async () => {
+  console.log(1);
   randomBtn.disabled = true
   searchBtn.disabled = true
-  randomBtn.innerText = "Случайное фото ..."
+  randomBtn.innerText = "Загрузка ..."
   imgContainer.innerHTML = ""
   await fetchRandomPhoto()
   randomBtn.disabled = false
@@ -33,7 +35,7 @@ const fetchRandomPhoto = async () => {
   const response = await fetch(`${baseURl}${getRandomPhotoURL}`, {
     method: 'GET',
     headers: {
-      'Authorization': `Client-ID lKqNAmSPYVsegVHIB_RW8FHAEo6_vhdTXlo69zXi9Q8` 
+      'Authorization': `Client-ID ${apiKey}` 
     }
   })
   switch (response.status) {
@@ -62,7 +64,7 @@ const searchPhotos = async () => {
   const response = await fetch(`${baseURl}${searchPhotoURL}?page=1&per_page=4&query=${query}`, {
     method: 'GET',
     headers: {
-      'Authorization': `Client-ID lKqNAmSPYVsegVHIB_RW8FHAEo6_vhdTXlo69zXi9Q8` 
+      'Authorization': `Client-ID ${apiKey}`
     }
   })
   switch (response.status) {

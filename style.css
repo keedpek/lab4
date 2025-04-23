@@ -45,10 +45,11 @@ body {
 .content-container {
   width: 100%;
   min-height: 500px;
-  border-radius: 50px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #863348;
 }
 
 .content-grid {
